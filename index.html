@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Somesh Hoge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#12181F;
+    --ink-soft:#1B232C;
+    --paper:#F2EFE9;
+    --paper-dim:#B8BFC7;
+    --gold:#C9A24B;
+    --line:#2A323C;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* ---- Hero ---- */
+  .hero{
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    position:relative;
+    padding:8vw;
+    border-bottom:1px solid var(--line);
+  }
+  .monogram{
+    position:absolute;
+    top:50%;
+    right:2vw;
+    transform:translateY(-50%);
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:min(48vw,520px);
+    line-height:1;
+    color:transparent;
+    -webkit-text-stroke:1px rgba(242,239,233,0.06);
+    user-select:none;
+    pointer-events:none;
+    z-index:0;
+  }
+  .eyebrow{
+    font-size:0.8rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:1.5rem;
+    opacity:0;
+    animation:rise 0.8s ease forwards 0.1s;
+    z-index:1;
+  }
+  h1{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:clamp(2.6rem,8vw,6rem);
+    line-height:1.02;
+    letter-spacing:-0.01em;
+    max-width:14ch;
+    opacity:0;
+    animation:rise 0.9s ease forwards 0.25s;
+    z-index:1;
+  }
+  .tagline{
+    margin-top:1.6rem;
+    font-size:clamp(1rem,1.6vw,1.25rem);
+    color:var(--paper-dim);
+    max-width:38ch;
+    font-weight:300;
+    opacity:0;
+    animation:rise 0.9s ease forwards 0.4s;
+    z-index:1;
+  }
+  .scroll-cue{
+    position:absolute;
+    bottom:3rem;
+    left:8vw;
+    font-size:0.75rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--paper-dim);
+    display:flex;
+    align-items:center;
+    gap:0.6rem;
+    opacity:0;
+    animation:rise 0.9s ease forwards 0.6s;
+    z-index:1;
+  }
+  .scroll-cue::after{
+    content:"";
+    width:28px;height:1px;
+    background:var(--gold);
+    display:inline-block;
+    animation:extend 1.6s ease-in-out infinite;
+  }
+  @keyframes rise{
+    from{opacity:0; transform:translateY(18px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  @keyframes extend{
+    0%,100%{width:16px;}
+    50%{width:36px;}
+  }
+
+  /* ---- About ---- */
+  section{
+    padding:7rem 8vw;
+    border-bottom:1px solid var(--line);
+  }
+  .label{
+    font-size:0.75rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:2rem;
+    display:block;
+  }
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 2fr;
+    gap:3rem;
+  }
+  .about-grid h2{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:clamp(1.8rem,3vw,2.4rem);
+    line-height:1.15;
+  }
+  .about-grid p{
+    font-size:clamp(1.05rem,1.6vw,1.3rem);
+    line-height:1.75;
+    color:var(--paper-dim);
+    font-weight:300;
+    max-width:52ch;
+  }
+  .about-grid p strong{
+    color:var(--paper);
+    font-weight:500;
+  }
+
+  /* ---- Timeline ---- */
+  .timeline{
+    display:flex;
+    flex-direction:column;
+  }
+  .tl-row{
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:2rem;
+    padding:2.2rem 0;
+    border-top:1px solid var(--line);
+  }
+  .tl-row:last-child{border-bottom:1px solid var(--line);}
+  .tl-year{
+    font-family:'Fraunces',serif;
+    font-size:0.95rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+  .tl-content h3{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:clamp(1.3rem,2.4vw,1.8rem);
+    margin-bottom:0.7rem;
+  }
+  .tl-content p{
+    color:var(--paper-dim);
+    font-weight:300;
+    font-size:1.05rem;
+    line-height:1.7;
+    max-width:56ch;
+  }
+
+  /* ---- Skills ---- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .skill-card{
+    background:var(--ink);
+    padding:2.4rem 1.8rem;
+    transition:background 0.35s ease;
+  }
+  .skill-card:hover{background:var(--ink-soft);}
+  .skill-index{
+    display:block;
+    font-family:'Fraunces',serif;
+    font-size:0.85rem;
+    color:var(--gold);
+    margin-bottom:1.6rem;
+  }
+  .skill-card h3{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:1.3rem;
+    margin-bottom:0.8rem;
+  }
+  .skill-card p{
+    color:var(--paper-dim);
+    font-size:0.92rem;
+    line-height:1.6;
+    font-weight:300;
+  }
+
+  @media (max-width:900px){
+    .skills-grid{grid-template-columns:repeat(2,1fr);}
+    .tl-row{grid-template-columns:1fr;gap:0.6rem;}
+  }
+  @media (max-width:520px){
+    .skills-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---- Connect ---- */
+  .connect{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .connect .label{margin-bottom:2.5rem;}
+  .link-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1.6rem 0;
+    border-top:1px solid var(--line);
+    text-decoration:none;
+    color:var(--paper);
+    transition:padding-left 0.35s ease, color 0.35s ease;
+  }
+  .link-row:last-child{border-bottom:1px solid var(--line);}
+  .link-row:hover{
+    padding-left:1rem;
+    color:var(--gold);
+  }
+  .link-row .name{
+    font-family:'Fraunces',serif;
+    font-size:clamp(1.4rem,3vw,2.2rem);
+    font-weight:500;
+  }
+  .link-row .meta{
+    font-size:0.85rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--paper-dim);
+  }
+  .link-row:hover .meta{color:var(--gold);}
+
+  footer{
+    padding:3rem 8vw;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:0.8rem;
+    color:var(--paper-dim);
+    letter-spacing:0.05em;
+  }
+
+  @media (max-width:720px){
+    .about-grid{grid-template-columns:1fr;}
+    .link-row .meta{display:none;}
+    footer{flex-direction:column;gap:0.6rem;text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="monogram">SH</div>
+    <span class="eyebrow">Portfolio</span>
+    <h1>Somesh<br>Hoge</h1>
+    <p class="tagline">Welcome to my little corner of the internet.</p>
+    <div class="scroll-cue">Scroll</div>
+  </section>
+
+  <section id="about">
+    <div class="about-grid">
+      <h2>About<br>Me</h2>
+      <p>
+        Hi, I'm <strong>Somesh Hoge</strong>, a Computer Engineering graduate who enjoys working
+        with data. I spend most of my time with <strong>SQL</strong> &mdash; querying, structuring,
+        and making sense of it. I like solving problems the engineering way: break it down,
+        figure it out, get it working.
+      </p>
+    </div>
+  </section>
+
+  <section id="work">
+    <span class="label">Education &amp; Work</span>
+    <div class="timeline">
+      <div class="tl-row">
+        <span class="tl-year">Education</span>
+        <div class="tl-content">
+          <h3>Computer Engineering</h3>
+          <p>Graduated with a degree in Computer Engineering &mdash; built a strong foundation in
+          computing, logic, and systems thinking.</p>
+        </div>
+      </div>
+      <div class="tl-row">
+        <span class="tl-year">Work</span>
+        <div class="tl-content">
+          <h3>SQL &amp; Databases</h3>
+          <p>Working hands-on with SQL &mdash; writing queries, managing databases, and turning
+          raw data into something useful.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <span class="label">Skills &amp; Interests</span>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <span class="skill-index">01</span>
+        <h3>SQL</h3>
+        <p>Writing and optimizing queries, working with relational databases.</p>
+      </div>
+      <div class="skill-card">
+        <span class="skill-index">02</span>
+        <h3>Database Management</h3>
+        <p>Structuring and handling data efficiently and reliably.</p>
+      </div>
+      <div class="skill-card">
+        <span class="skill-index">03</span>
+        <h3>Problem Solving</h3>
+        <p>Engineering mindset &mdash; breaking problems down, solving them systematically.</p>
+      </div>
+      <div class="skill-card">
+        <span class="skill-index">04</span>
+        <h3>Computer Fundamentals</h3>
+        <p>Solid grounding from a Computer Engineering background.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="connect">
+    <span class="label">Connect</span>
+    <div class="connect">
+      <a class="link-row" href="https://www.instagram.com/someshh20?igsh=MWJoYXcyamQ3YWZtZA==" target="_blank" rel="noopener">
+        <span class="name">Instagram</span>
+        <span class="meta">@someshh20 &rarr;</span>
+      </a>
+      <a class="link-row" href="mailto:hogesomesh18@gmail.com">
+        <span class="name">Email</span>
+        <span class="meta">hogesomesh18@gmail.com &rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span>&copy; 2026 Somesh Hoge</span>
+    <span>Made with care</span>
+  </footer>
+
+</body>
+</html>
